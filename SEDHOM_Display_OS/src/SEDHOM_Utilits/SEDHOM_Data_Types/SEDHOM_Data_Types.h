@@ -1,9 +1,9 @@
 #ifndef SEDHOM_DATA_TYPES_H_ 
 #define SEDHOM_DATA_TYPES_H_ 
 //**********************************************************************************************************************
-#include "../../SEDHOM_OS_Settings/SEDHOM_OS_Settings.h"
 #include "SEDHOM_primitive_Types.h"
-#include "SEDHOM_String_Type.h"
+// #include "SEDHOM_String_Data_Type/SEDHOM_String_Type.h"
+#include "SEDHOM_Dynamic_Data_Type/SEDHOM_Dynamic_Data_Type.h"
 //**********************************************************************************************************************
 #define SEDHOM_Flash     SEDHOM_PROGMEM
 
@@ -29,19 +29,19 @@
 typedef U_int16_t Color_t;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // make Data type of Data Types names and value put it
-// class Dynamic : public SEDHOM_Dynamic_Data_Type
-// {
-//     public:
-//         using SEDHOM_Dynamic_Data_Type::operator=;
-//         // Constructors
-//         Dynamic() {}
-//         Dynamic(int value) { *this = value; }
-//         Dynamic(float value) { *this = value; }
-//         Dynamic(double value) { *this = value; }
-//         Dynamic(bool value) { *this = value; }
-//         Dynamic(char value) { *this = value; }
-//         Dynamic(const char* value) { *this = value; }
-// };
+class Dynamic : public SEDHOM_Dynamic_Data_Type
+{
+    public:
+        using SEDHOM_Dynamic_Data_Type::operator=;
+        // Constructors
+        Dynamic() {}
+        Dynamic(int value) { *this = value; }
+        Dynamic(float value) { *this = value; }
+        Dynamic(double value) { *this = value; }
+        Dynamic(bool value) { *this = value; }
+        Dynamic(char value) { *this = value; }
+        Dynamic(const char* value) { *this = value; }
+};
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef enum 
 {
