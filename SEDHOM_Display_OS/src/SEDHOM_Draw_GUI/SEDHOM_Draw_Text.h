@@ -14,7 +14,7 @@ class SEDHOM_Draw_Text : private SEDHOM_GUI_Core
         void Char(Coordinate_t coordinate,const SEDHOM_GFXfont* font,Color_t color,char c);
         void Text(Coordinate_t coordinate,const SEDHOM_GFXfont* font,Color_t color,char* txt);
         void Text(Coordinate_t coordinate,const SEDHOM_GFXfont* font,Color_t color,Dynamic val,int float_precision = 2);
-        // void Text_OverFlow(Coordinate_t coordinate,const SEDHOM_GFXfont* font,Color_t color,String txt,int number_overFlow=10,char* overFlow_chars="...");
+        void Text_OverFlow(Coordinate_t coordinate,const SEDHOM_GFXfont* font, Color_t color,char * txt,int number_overFlow = 10,char* overFlow_chars = "...");
 
 };
 //TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT

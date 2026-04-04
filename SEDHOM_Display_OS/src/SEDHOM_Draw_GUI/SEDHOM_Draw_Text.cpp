@@ -13,4 +13,21 @@ void SEDHOM_Draw_Text::Text(Coordinate_t coordinate,const SEDHOM_GFXfont* font,C
 {
   Text(coordinate, font, color, val.to_String(float_precision));
 }
+void SEDHOM_Draw_Text::Text_OverFlow(Coordinate_t coordinate,const SEDHOM_GFXfont* font, Color_t color,char * txt,int number_overFlow,char* overFlow_chars)
+{
+    char buffer[100]; 
+    int txt_len = strlen(txt);
+    int overflow_len = strlen(overFlow_chars);
+    if(txt_len <= number_overFlow)
+    {
+        Text(coordinate, font, color, txt);
+        return;
+    }
+    int copy_len = number_overFlow - overflow_len;
+    if(copy_len < 0) copy_len = 0;
+    strncpy(buffer, txt, copy_len);
+    buffer[copy_len] = '\0';
+    strcat(buffer, overFlow_chars);
+    Text(coordinate, font, color, buffer);
+}
 //TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
