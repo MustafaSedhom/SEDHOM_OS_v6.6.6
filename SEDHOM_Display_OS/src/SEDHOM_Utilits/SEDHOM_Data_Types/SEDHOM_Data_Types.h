@@ -4,6 +4,9 @@
 #include "SEDHOM_primitive_Types.h"
 // #include "SEDHOM_String_Data_Type/SEDHOM_String_Type.h"
 #include "SEDHOM_Dynamic_Data_Type/SEDHOM_Dynamic_Data_Type.h"
+#include "../SEDHOM_Data_Structure/Stack_Data_Structure/Stack_Data_Structure.h"
+#include "../SEDHOM_Data_Structure/Queue_Data_Structure/Queue_Data_Structure.h"
+#include "../SEDHOM_Data_Structure/LinkedList_Data_Structure/LinkedList_Data_Structure.h"
 //**********************************************************************************************************************
 #define SEDHOM_Flash     SEDHOM_PROGMEM
 
