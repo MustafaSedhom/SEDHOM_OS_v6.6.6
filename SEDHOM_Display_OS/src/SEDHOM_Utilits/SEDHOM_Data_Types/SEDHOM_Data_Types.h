@@ -99,7 +99,6 @@ typedef enum
 //     Color_t image_background;
 //     bool default_image;
 //     bool eye;
-
 // }User_ID_Data_t;
 ///////////////////////////////////////////////////////////////////////////
 // data type of time icon
