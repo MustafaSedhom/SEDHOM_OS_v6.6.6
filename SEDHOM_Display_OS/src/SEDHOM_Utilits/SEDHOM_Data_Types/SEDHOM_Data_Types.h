@@ -2,13 +2,15 @@
 #define SEDHOM_DATA_TYPES_H_ 
 //**********************************************************************************************************************
 #include "SEDHOM_primitive_Types.h"
-// #include "SEDHOM_String_Data_Type/SEDHOM_String_Type.h"
+#include "SEDHOM_String_Data_Type/SEDHOM_String_Type.h"
 #include "SEDHOM_Dynamic_Data_Type/SEDHOM_Dynamic_Data_Type.h"
 #include "../SEDHOM_Data_Structure/Stack_Data_Structure/Stack_Data_Structure.h"
 #include "../SEDHOM_Data_Structure/Queue_Data_Structure/Queue_Data_Structure.h"
 #include "../SEDHOM_Data_Structure/LinkedList_Data_Structure/LinkedList_Data_Structure.h"
+#include "../../SEDHOM_OS_Settings/SEDHOM_OS_Settings.h"
 //**********************************************************************************************************************
 #define SEDHOM_Flash     SEDHOM_PROGMEM
+// #define SEDHOM_Flash     PROGMEM
 
 #define Night_Mode       Color_Black
 #define Light_Mode       Color_White

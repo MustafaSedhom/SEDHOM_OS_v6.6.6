@@ -5,23 +5,25 @@
 #include "SEDHOM_OS_Settings/SEDHOM_OS_Settings.h"
 #include "SEDHOM_Utilits/SEDHOM_Data_Types/SEDHOM_Data_Types.h"
 #include "SEDHOM_Utilits/SEDHOM_Math/SEDHOM_Math.h"
-#include "SEDHOM_Draw_GUI/SEDHOM_Basic_Shapes.h"
-#include "SEDHOM_GUI_Core/SEDHOM_Colors.h"
+#include "SEDHOM_Draw_GUI/SEDHOM_Basic_Shapes/SEDHOM_Basic_Shapes.h"
+#include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Draw_Text.h"
+#include "SEDHOM_GUI_Core/SEDHOM_Colors/SEDHOM_Colors.h"
 #include "SEDHOM_OS_Core/SEDHOM_OS_Time.h"
-#include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text.h"
-#include "SEDHOM_GUI_Core/SEDHOM_English_Fonts.h"
-//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+// #include "SEDHOM_GUI_Core/SEDHOM_English_Fonts.h"
+#include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Text_Style/SEDHOM_Font_Style/SEDHOM_Font_definations.h"
+//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS(SS
 // objects of classes
 SEDHOM_Basic_Shapes Shapes;
 SEDHOM_Time Time;
 SEDHOM_Colors Colors;
 SEDHOM_Draw_Text Text;
+SEDHOM_Text_Style TextStyle;
+SEDHOM_Font_definations Fonts;
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 class SEDHOM_OS
 {
   private:
     Color_t OS_Mode;
-    // my name is Mustafa SEDHOM i wrote this lib to make easy way to use TFT Display in embedded projects
   public:
     /// define all functions
     void Init_OS(ROTATION_STATUS_t Rotate = Rotate_90_Degree,Color_t Mode = Night_Mode);
