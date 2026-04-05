@@ -1,4 +1,26 @@
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+//    src
+//     ├───SEDHOM_Draw_GUI
+//     │   ├───SEDHOM_Basic_Shapes
+//     │   └───SEDHOM_Draw_Text
+//     │       └───SEDHOM_Text_Style
+//     │           ├───SEDHOM_Font_Style
+//     │           └───SEDHOM_Style_of_Text
+//     ├───SEDHOM_GUI_Core
+//     │   ├───SEDHOM_Colors
+//     │   └───SEDHOM_Fonts
+//     ├───SEDHOM_OS_Core
+//     ├───SEDHOM_OS_Settings
+//     └───SEDHOM_Utilits
+//         ├───SEDHOM_Data_Structure
+//         │   ├───LinkedList_Data_Structure
+//         │   ├───Queue_Data_Structure
+//         │   └───Stack_Data_Structure
+//         ├───SEDHOM_Data_Types
+//         │   ├───SEDHOM_Dynamic_Data_Type
+//         │   └───SEDHOM_String_Data_Type
+//         └───SEDHOM_Math
+//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 #ifndef SEDHOM_OS_H_
 #define SEDHOM_OS_H_
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
