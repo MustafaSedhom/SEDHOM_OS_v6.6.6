@@ -4,16 +4,20 @@
 //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 #include "SEDHOM_Font_Style.h"
 #include "../../../../SEDHOM_GUI_Core/SEDHOM_English_Fonts.h"
+#include "../../../../SEDHOM_Utilits/SEDHOM_Data_Types/SEDHOM_Data_Types.h"
 //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 class SEDHOM_Font_definations
 {
     private:
     public:
-       Font Default(); 
-       Font Serif();  
-       Font Mono();   
-
+       // string Fonts 
+       Font Default(Font_Size_t size = Font_Size_Medium);
+       Font Sans(Font_Size_t size = Font_Size_Medium , Font_Style_t style = Font_Style_Regular); 
+       Font Serif(Font_Size_t size = Font_Size_Medium , Font_Style_t style = Font_Style_Regular);  
+       Font Mono(Font_Size_t size = Font_Size_Medium , Font_Style_t style = Font_Style_Regular);   
+       // Digit Fonts
+       Font SevenSegment();
 };
 //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 #endif // !SEDHOM_FONT_DEFINATIONS_H_

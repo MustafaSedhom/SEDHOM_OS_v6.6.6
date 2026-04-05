@@ -10,7 +10,6 @@
 #include "../../SEDHOM_OS_Settings/SEDHOM_OS_Settings.h"
 //**********************************************************************************************************************
 #define SEDHOM_Flash     SEDHOM_PROGMEM
-// #define SEDHOM_Flash     PROGMEM
 
 #define Night_Mode       Color_Black
 #define Light_Mode       Color_White
@@ -47,6 +46,21 @@ class Dynamic : public SEDHOM_Dynamic_Data_Type
         Dynamic(char value) { *this = value; }
         Dynamic(const char* value) { *this = value; }
 };
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+typedef enum 
+{
+    Font_Size_Small,
+    Font_Size_Medium,
+    Font_Size_Large,
+    Font_Size_Very_Large,
+}Font_Size_t;
+typedef enum 
+{ 
+    Font_Style_Regular,
+    Font_Style_Bold,
+    Font_Style_Italic,
+    Font_Style_Bold_and_Italic,
+}Font_Style_t;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef enum 
 {
