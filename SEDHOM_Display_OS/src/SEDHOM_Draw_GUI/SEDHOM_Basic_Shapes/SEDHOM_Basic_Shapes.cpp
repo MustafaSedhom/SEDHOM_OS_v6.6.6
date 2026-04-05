@@ -40,6 +40,18 @@ void SEDHOM_Basic_Shapes::Circle(Circle_Data_t circle)
       break;
     }
 } 
+void SEDHOM_Basic_Shapes::Ellipse(Ellipse_Data_t ellipse)
+{
+    switch (ellipse.Filled)
+    {
+    case Shape_Fill:
+        fillEllipse(ellipse.coordinate.x,ellipse.coordinate.y,ellipse.Radius.w,ellipse.Radius.h,ellipse.color);
+      break;
+    case Shape_Draw:
+        drawEllipse(ellipse.coordinate.x,ellipse.coordinate.y,ellipse.Radius.w,ellipse.Radius.h,ellipse.color);
+      break;
+    }
+}
 void SEDHOM_Basic_Shapes::Circle_Helper(Circle_Helper_Data_t circle_helper)
 {
     switch (circle_helper.Filled)

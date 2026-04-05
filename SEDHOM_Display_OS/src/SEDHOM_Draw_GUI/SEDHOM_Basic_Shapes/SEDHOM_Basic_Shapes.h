@@ -19,6 +19,7 @@ class SEDHOM_Basic_Shapes : private SEDHOM_GUI_Core
         void Circle(Circle_Data_t circle); 
         void Circle_Helper(Circle_Helper_Data_t circle_helper);
         void Triangle(Triangle_Data_t tri); 
+        void Ellipse(Ellipse_Data_t ellipse);
         // shapes derivative
         void Equilateral_Triangle(Triangle_special_Data_t tri);
         void Right_Triangle(Icon_Data_t Icon,Area_t area,Shape_filled_t filled);
