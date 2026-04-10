@@ -31,8 +31,10 @@
 #include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Draw_Text.h"
 #include "SEDHOM_GUI_Core/SEDHOM_Colors/SEDHOM_Colors.h"
 #include "SEDHOM_OS_Core/SEDHOM_OS_Time.h"
-// #include "SEDHOM_GUI_Core/SEDHOM_English_Fonts.h"
 #include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Text_Style/SEDHOM_Font_Style/SEDHOM_Font_definations.h"
+//////////
+#include "SEDHOM_GUI_Core/SEDHOM_Arabic_Fonts/SEDHOM_Arabic_Font_Small_classic.h"
+//////////
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS(SS
 // objects of classes
 SEDHOM_Basic_Shapes Shapes;

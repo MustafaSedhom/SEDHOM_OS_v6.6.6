@@ -139,16 +139,18 @@ void SEDHOM_Basic_Shapes::Equilateral_Triangle(Triangle_special_Data_t tri)
   Triangle({{ x_0,  y_0},{  x_1,  y_1},{  x_2,  y_2},tri.filled, tri.color});
 }
 // Draw custom image or font
-void SEDHOM_Basic_Shapes::Draw_Custom_Char(Icon_Data_t Icon,Area_t area,char arr[])
+void SEDHOM_Basic_Shapes::Draw_Custom_Char(Icon_Data_t Icon,Area_t area,char* bitmap)
 {
-  for(int i=0; i<area.w; i++) 
-  {
-    for(int j=0; j<area.h; j++) 
-    {
-      if(((arr[i]) >> (area.h-1-j)) & 0x01)
-      {
-        Pixel({{Icon.coordinate.x+j,Icon.coordinate.y+i}, Icon.color}); 
-      }
+  U_int16_t byteWidth = (area.w + 7) / 8; 
+  U_int8_t b = 0;
+  for (U_int16_t j = 0; j < area.h; j++, Icon.coordinate.y++) {
+    for (U_int16_t i = 0; i < area.w; i++) {
+      if (i & 7)
+        b <<= 1;
+      else
+        b = bitmap[j * byteWidth + i / 8];
+      if (b & 0x80)
+        Pixel({{Icon.coordinate.x+i,Icon.coordinate.y}, Icon.color});
     }
   }
 }
