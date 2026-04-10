@@ -129,6 +129,10 @@ inline void SEDHOM_Fill_Screen(uint16_t color)
 {
     Display_Object.fillScreen(color);
 }
+inline void SEDHOM_Set_Address_Window(int16_t x, int16_t y, int16_t w, int16_t h)
+{
+    Display_Object.setAddrWindow(x, y, w, h);
+}
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
                                     // Touch functions from Drivers
 //SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
