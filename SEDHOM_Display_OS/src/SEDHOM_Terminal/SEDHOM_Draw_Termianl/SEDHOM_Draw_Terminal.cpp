@@ -13,31 +13,7 @@ void SEDHOM_Terminal::Welcome_Message()
 }
 void SEDHOM_Terminal::Draw_path()
 {
-    int len = strlen(path);
-    int index = 0;
-    while (index < len)
-    {
-        char buffer[max_characters_in_line + 1];
-        int i = 0;
-        while (i < max_characters_in_line && index < len)
-        {
-            // handle newline
-            if (path[index] == '\n')
-            {
-                index++;
-                break;
-            }
-            buffer[i++] = path[index++];
-        }
-        buffer[i] = '\0';
-        if (len > max_characters_in_line)
-        {
-           y_coordinate += char_height;
-        }
-        Text({x_coordinate, y_coordinate},
-             buffer,
-             Terminal_Style.color(path_color));
-    }
+    Text({x_coordinate,y_coordinate},path,Terminal_Style.color(path_color));
 }
 void SEDHOM_Terminal::Start_New_Terminal()
 {
@@ -65,7 +41,6 @@ void SEDHOM_Terminal::Change_path(char* new_path)
             buffer[i++] = new_path[index++];
         }
         buffer[i] = '\0';
-        y_coordinate += char_height;
     }
     strcpy(path, new_path);
 }
@@ -110,7 +85,7 @@ void SEDHOM_Terminal::Draw_Terminal()
     Answer_Command("This is a test answer");
     Draw_path();
     User_Command("ls -la");
-    Answer_Command("total 0\ndirwbr-xr-x  2 user\n group 4096 bbg bh gbh gd0 eei dd dd djd ddbdhd dhbdhb jdndjd ");
+    Answer_Command("total 0\ndirwbr-xr-x  2 user\n group 4096 bbg bh gbh gd0 eei dd dd djd gj www mnmn\n-rw-r--r--  1 user group 0 Jul 20 12:00 file1.txt\n-rw-r--r--  1 user group 0 Jul 20 12:00 file2.txt");
     Draw_path();
     User_Command("ls -la");
     Answer_Command("wrong msg file is not exit",true);

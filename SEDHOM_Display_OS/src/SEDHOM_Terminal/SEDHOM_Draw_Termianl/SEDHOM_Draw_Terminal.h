@@ -9,8 +9,7 @@
 #include "../../SEDHOM_Utilits/SEDHOM_Math/SEDHOM_Math.h"
 #include "../../SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Text_Style/SEDHOM_Style_of_Text/SEDHOM_Text_Style.h"
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
-class SEDHOM_Terminal : private SEDHOM_Draw_Text , private SEDHOM_Basic_Shapes , 
-                        private SEDHOM_Font_definations , private SEDHOM_Math , private SEDHOM_Text_Style
+class SEDHOM_Terminal : private SEDHOM_Draw_Text , private SEDHOM_Font_definations , private SEDHOM_Text_Style
 {
     private:
         int char_width = 12;
@@ -29,14 +28,15 @@ class SEDHOM_Terminal : private SEDHOM_Draw_Text , private SEDHOM_Basic_Shapes ,
         const char command_answer_char[6] = "$$$?";
         // functions
         void Welcome_Message();
-        void Start_New_Terminal();
-        void Answer_Command(char* answer, bool is_wrong_answer = false);
-        void User_Command(char* command);
-        void Draw_path();
-        void Change_path(char* new_path);
-    public:
+        public:
         SEDHOM_Text_Style Terminal_Style = SEDHOM_Text_Style().font(Fonts.Mono(Font_Size_Small)).color(Color_Green);
         // functions
+        void Start_New_Terminal();
+        void Draw_path();
+        void Change_path(char* new_path);
+        void User_Command(char* command);
+        void Answer_Command(char* answer, bool is_wrong_answer = false);
+        //////////////////
         void Draw_Terminal();
 };
 
