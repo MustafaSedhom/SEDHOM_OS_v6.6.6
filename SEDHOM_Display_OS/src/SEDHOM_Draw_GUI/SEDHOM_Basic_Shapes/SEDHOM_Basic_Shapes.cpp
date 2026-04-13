@@ -2,6 +2,11 @@
 #include "SEDHOM_Basic_Shapes.h"
 //BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 // define functions
+// fill screen
+void SEDHOM_Basic_Shapes::Fill_Screen(Color_t color)
+{
+    SEDHOM_Fill_Screen(color);
+}
 // Basic shapes function  
 void SEDHOM_Basic_Shapes::Pixel(Pixel_Data_t pixel)
 {

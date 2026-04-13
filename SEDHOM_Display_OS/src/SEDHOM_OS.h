@@ -97,7 +97,8 @@ Color_t SEDHOM_OS::Not_Mode()
 }
 void SEDHOM_OS::Fill_Screen(Color_t color)
 {
-  SEDHOM_Fill_Screen(color);
+  // SEDHOM_Fill_Screen(color);
+  SEDHOM_Basic_Shapes::Fill_Screen(color);
 }
 int SEDHOM_OS::Screen_Width()
 {

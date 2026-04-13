@@ -2,13 +2,32 @@
 #include "SEDHOM_Draw_Terminal.h"
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+void SEDHOM_Terminal::change_terminal_colors(Color_t path_color, Color_t command_answer_color, Color_t command_answer_wrong_color, Color_t answer_color, Color_t User_command_color, Color_t Terminal_Background_color, Color_t start_msg_color)
+{
+    this->path_color = path_color;
+    this->command_answer_color = command_answer_color;
+    this->command_answer_wrong_color = command_answer_wrong_color;
+    this->answer_color = answer_color;
+    this->User_command_color = User_command_color;
+    this->Terminal_Background_color = Terminal_Background_color;
+    this->start_msg_color = start_msg_color;
+}
+void SEDHOM_Terminal::change_terminal_dimensions(int char_width, int char_height, int x_coordinate, int y_coordinate, int max_characters_in_line, int max_lines_on_screen)
+{
+    this->char_width = char_width;
+    this->char_height = char_height;
+    this->x_coordinate = x_coordinate;
+    this->y_coordinate = y_coordinate;
+    this->max_characters_in_line = max_characters_in_line;
+    this->max_lines_on_screen = max_lines_on_screen;
+}
 void SEDHOM_Terminal::Welcome_Message()
 {
-    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style);
+    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
     y_coordinate += char_height;
-    Text({x_coordinate,y_coordinate},"Welcome to SEDHOM Terminal",Terminal_Style);
+    Text({x_coordinate,y_coordinate},"Welcome to SEDHOM Terminal",Terminal_Style.color(start_msg_color));
     y_coordinate += char_height ;
-    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style);
+    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
     y_coordinate += char_height;
 }
 void SEDHOM_Terminal::Draw_path()
@@ -78,29 +97,38 @@ void SEDHOM_Terminal::User_Command(char* command)
     Text({x_coordinate + strlen(path) * char_width-10, y_coordinate},command,Terminal_Style.color(User_command_color));
     y_coordinate += char_height;
 }
+void SEDHOM_Terminal::Clear_Terminal()
+{
+    y_coordinate = 10;
+    SEDHOM_Basic_Shapes::Fill_Screen(Terminal_Background_color);
+    Draw_path();
+}
+void SEDHOM_Terminal::Add_folder_to_path(char* folder_name)
+{
+    strcat(path, folder_name);
+    strcat(path, " -> ");
+}
+//////////////////////////////////////////////////////
 void SEDHOM_Terminal::Draw_Terminal()
 {
     Start_New_Terminal();
     User_Command("test");
     Answer_Command("This is a test answer");
     Draw_path();
-    User_Command("ls -la");
-    Answer_Command("total 0\ndirwbr-xr-x  2 user\n group 4096 bbg bh gbh gd0 eei dd dd djd gj www mnmn\n-rw-r--r--  1 user group 0 Jul 20 12:00 file1.txt\n-rw-r--r--  1 user group 0 Jul 20 12:00 file2.txt");
+    User_Command("ls");
+    Answer_Command("choose folders<> and files[] => \nDocuments/ \nDownloads/ \nfile.txt \nimage.png \naudio.mp3 \nvideo.mp4");
     Draw_path();
-    User_Command("ls -la");
+    User_Command("open mustafa.txt");
     Answer_Command("wrong msg file is not exit",true);
     Draw_path();
-    User_Command("ls -la");
-    Answer_Command("wrong msg file is not exit");
+    User_Command("open SEDHOM");
+    Answer_Command("wrong msg Folder is not exit",true);
     Draw_path();
-    User_Command("ls -la");
-    Answer_Command("wrong msg file is not exit",true);
+    User_Command("cd Documents");
     Change_path("Root::Home::Documents -> ");
     Draw_path();
-    User_Command("ls -la");
-    Answer_Command("wrong msg file is not exit",true);
+    User_Command("mkdir Folder1");
+    Answer_Command("Ok");
     Draw_path();
-    User_Command("ls -la");
-    Answer_Command("wrong msg file is not exit");
 }
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ

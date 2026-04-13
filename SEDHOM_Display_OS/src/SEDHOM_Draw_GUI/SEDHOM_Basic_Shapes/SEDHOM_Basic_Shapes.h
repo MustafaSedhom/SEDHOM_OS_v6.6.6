@@ -11,6 +11,8 @@ class SEDHOM_Basic_Shapes : private SEDHOM_GUI_Core
     private:
         
     public:
+        // define all screen functions
+        static void Fill_Screen(Color_t color);
         // define Basic shapes
         void Pixel(Pixel_Data_t pixel);
         void Line(Line_Data_t line);    
