@@ -2,7 +2,12 @@
 #include "SEDHOM_Draw_Terminal.h"
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
-void SEDHOM_Terminal::change_terminal_colors(Color_t path_color, Color_t command_answer_color, Color_t command_answer_wrong_color, Color_t answer_color, Color_t User_command_color, Color_t Terminal_Background_color, Color_t start_msg_color)
+void SEDHOM_Terminal::Init_path()
+{
+    strcpy(path, start_folder_path);
+    strcat(path, end_path);
+}
+void SEDHOM_Terminal::Change_terminal_colors(Color_t path_color, Color_t command_answer_color, Color_t command_answer_wrong_color, Color_t answer_color, Color_t User_command_color, Color_t Terminal_Background_color, Color_t start_msg_color)
 {
     this->path_color = path_color;
     this->command_answer_color = command_answer_color;
@@ -12,14 +17,22 @@ void SEDHOM_Terminal::change_terminal_colors(Color_t path_color, Color_t command
     this->Terminal_Background_color = Terminal_Background_color;
     this->start_msg_color = start_msg_color;
 }
-void SEDHOM_Terminal::change_terminal_dimensions(int char_width, int char_height, int x_coordinate, int y_coordinate, int max_characters_in_line, int max_lines_on_screen)
+void SEDHOM_Terminal::Change_terminal_dimensions(int char_width, int char_height, int start_x_coordinate, int start_y_coordinate, int max_characters_in_line, int max_lines_on_screen)
 {
     this->char_width = char_width;
     this->char_height = char_height;
-    this->x_coordinate = x_coordinate;
-    this->y_coordinate = y_coordinate;
+    this->x_coordinate = start_x_coordinate;
+    this->y_coordinate = start_y_coordinate;
     this->max_characters_in_line = max_characters_in_line;
     this->max_lines_on_screen = max_lines_on_screen;
+}
+void SEDHOM_Terminal::Change_Terminal_Settings(char* start_folder_path, char* separator_path, char* end_path, char* command_answer_char)
+{
+    strcpy(this->start_folder_path, start_folder_path);
+    strcpy(this->separator_path, separator_path);
+    strcpy(this->end_path, end_path);
+    strcpy(this->command_answer_char, command_answer_char);
+    Init_path();
 }
 void SEDHOM_Terminal::Welcome_Message()
 {
@@ -36,10 +49,11 @@ void SEDHOM_Terminal::Draw_path()
 }
 void SEDHOM_Terminal::Start_New_Terminal()
 {
+    Init_path();
     Welcome_Message();
     Draw_path();
 }
-void SEDHOM_Terminal::Change_path(char* new_path)
+void SEDHOM_Terminal::Change_all_path(char* new_path)
 {
     int len = strlen(new_path);
     int index = 0;
@@ -62,6 +76,7 @@ void SEDHOM_Terminal::Change_path(char* new_path)
         buffer[i] = '\0';
     }
     strcpy(path, new_path);
+    Draw_path();
 }
 void SEDHOM_Terminal::Answer_Command(char* answer, bool is_wrong_answer)
 {
@@ -99,14 +114,59 @@ void SEDHOM_Terminal::User_Command(char* command)
 }
 void SEDHOM_Terminal::Clear_Terminal()
 {
-    y_coordinate = 10;
+    y_coordinate = start_y_coordinate;
     SEDHOM_Basic_Shapes::Fill_Screen(Terminal_Background_color);
     Draw_path();
 }
 void SEDHOM_Terminal::Add_folder_to_path(char* folder_name)
 {
+    int len = strlen(path);
+    int end_path_len = strlen(end_path);
+    if (len >= end_path_len)
+    {
+        path[len - end_path_len] = '\0';
+    }
+    if (strlen(path) > 0)
+    {
+        strcat(path, separator_path);
+    }
     strcat(path, folder_name);
-    strcat(path, " -> ");
+    strcat(path, end_path);
+    Draw_path();
+}
+void SEDHOM_Terminal::Remove_folder_from_path()
+{
+    char root_path[300];
+    snprintf(root_path, sizeof(root_path), "%s%s", start_folder_path, end_path);
+    if (strcmp(path, root_path) == 0)
+    {
+        return;
+    }
+    int len = strlen(path);
+    int end_path_len = strlen(end_path);
+    // int separator_path_len = strlen(separator_path);
+    if (len >= end_path_len && strcmp(path + len - end_path_len, end_path) == 0)
+    {
+        path[len - end_path_len] = '\0';
+    }
+    char* last = nullptr;
+    for (char* p = path; *p; p++)
+    {
+        if (*p == separator_path[0] && *(p + 1) == separator_path[1])
+        {
+            last = p;
+        }
+    }
+    if (last != nullptr)
+    {
+        *last = '\0';
+    }
+    else
+    {
+        strcpy(path, start_folder_path);
+    }
+    strcat(path, end_path);
+    Draw_path();
 }
 //////////////////////////////////////////////////////
 void SEDHOM_Terminal::Draw_Terminal()
@@ -125,7 +185,7 @@ void SEDHOM_Terminal::Draw_Terminal()
     Answer_Command("wrong msg Folder is not exit",true);
     Draw_path();
     User_Command("cd Documents");
-    Change_path("Root::Home::Documents -> ");
+    Change_all_path("Root::Home::Documents -> ");
     Draw_path();
     User_Command("mkdir Folder1");
     Answer_Command("Ok");
