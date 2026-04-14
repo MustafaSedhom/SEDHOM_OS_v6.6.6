@@ -17,6 +17,8 @@ class SEDHOM_Terminal : private SEDHOM_Draw_Text , private SEDHOM_Font_definatio
         const char end_path[6] = " -> ";
         const char command_answer_char[6] = "$$$?";
         char path[300] = "";
+        int path_length_after_wraping = 0;
+        bool is_path_wrapped = false;
         ///////// terminal settings //////////
         // terminal dimensions
         int char_width = 12;
@@ -45,16 +47,14 @@ class SEDHOM_Terminal : private SEDHOM_Draw_Text , private SEDHOM_Font_definatio
         void Change_terminal_dimensions(int char_width = 12,int char_height = 16,int start_x_coordinate = 10,int start_y_coordinate = 10,int max_characters_in_line = 35,int max_lines_on_screen = 19);
         void Change_Terminal_Settings(char* start_folder_path = (char*)"Root",char* separator_path = (char*)"::",char* end_path = (char*)" -> ",char* command_answer_char = (char*)"$$$?");
         //Terminal functions
-        void Start_New_Terminal();
+        void Init_Terminal();
+        void Clear_Terminal();
         void Draw_path();
         void Change_all_path(char* new_path);
-        void User_Command(char* command);
-        void Answer_Command(char* answer, bool is_wrong_answer = false);
-        void Clear_Terminal();
         void Add_folder_to_path(char* folder_name);
         void Remove_folder_from_path();
-        //////////////////
-        void Draw_Terminal();
+        void User_Command(char* command);
+        void Answer_Command(char* answer, bool is_wrong_answer = false);
 };
 
 

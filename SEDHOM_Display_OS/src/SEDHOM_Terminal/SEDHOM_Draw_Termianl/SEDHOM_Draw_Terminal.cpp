@@ -1,12 +1,22 @@
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 #include "SEDHOM_Draw_Terminal.h"
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
-//JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+// private functions
 void SEDHOM_Terminal::Init_path()
 {
     strcpy(path, start_folder_path);
     strcat(path, end_path);
 }
+void SEDHOM_Terminal::Welcome_Message()
+{
+    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
+    y_coordinate += char_height;
+    Text({x_coordinate,y_coordinate},"Welcome to SEDHOM Terminal",Terminal_Style.color(start_msg_color));
+    y_coordinate += char_height ;
+    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
+    y_coordinate += char_height;
+}
+//JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
 void SEDHOM_Terminal::Change_terminal_colors(Color_t path_color, Color_t command_answer_color, Color_t command_answer_wrong_color, Color_t answer_color, Color_t User_command_color, Color_t Terminal_Background_color, Color_t start_msg_color)
 {
     this->path_color = path_color;
@@ -34,24 +44,40 @@ void SEDHOM_Terminal::Change_Terminal_Settings(char* start_folder_path, char* se
     strcpy(this->command_answer_char, command_answer_char);
     Init_path();
 }
-void SEDHOM_Terminal::Welcome_Message()
+void SEDHOM_Terminal::Init_Terminal()
 {
-    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
-    y_coordinate += char_height;
-    Text({x_coordinate,y_coordinate},"Welcome to SEDHOM Terminal",Terminal_Style.color(start_msg_color));
-    y_coordinate += char_height ;
-    Text({x_coordinate,y_coordinate},"===========================",Terminal_Style.color(start_msg_color));
-    y_coordinate += char_height;
-}
-void SEDHOM_Terminal::Draw_path()
-{
-    Text({x_coordinate,y_coordinate},path,Terminal_Style.color(path_color));
-}
-void SEDHOM_Terminal::Start_New_Terminal()
-{
+    Clear_Terminal();
     Init_path();
     Welcome_Message();
     Draw_path();
+}
+void SEDHOM_Terminal::Draw_path()
+{
+    int len = strlen(path);
+    int index = 0;
+    int line = 0;
+
+    is_path_wrapped = (len > max_characters_in_line+5);
+
+
+    while (index < len)
+    {
+        char buffer[max_characters_in_line+5 + 1];
+
+        int i = 0;
+        while (i < max_characters_in_line+5 && index < len)
+        {
+            buffer[i++] = path[index++];
+        }
+
+        buffer[i] = '\0';
+       y_coordinate += line * char_height;
+        Text({x_coordinate, y_coordinate},
+             buffer,
+             Terminal_Style.color(path_color));
+
+        line++;
+    }
 }
 void SEDHOM_Terminal::Change_all_path(char* new_path)
 {
@@ -106,10 +132,18 @@ void SEDHOM_Terminal::Answer_Command(char* answer, bool is_wrong_answer)
                  is_wrong_answer ? command_answer_wrong_color : answer_color));
         y_coordinate += char_height;
     }
+    Draw_path();
 }
 void SEDHOM_Terminal::User_Command(char* command)
 {
-    Text({x_coordinate + strlen(path) * char_width-10, y_coordinate},command,Terminal_Style.color(User_command_color));
+    int x_offset = strlen(path) * char_width-10;
+    int y_offset = y_coordinate;
+    if(strlen(path)>max_characters_in_line-5)
+    {
+        x_offset = (strlen(path) - max_characters_in_line-5) * char_width-10;
+        y_offset = y_coordinate ;
+    }
+    Text({x_offset, y_offset},command,Terminal_Style.color(User_command_color));
     y_coordinate += char_height;
 }
 void SEDHOM_Terminal::Clear_Terminal()
@@ -140,6 +174,7 @@ void SEDHOM_Terminal::Remove_folder_from_path()
     snprintf(root_path, sizeof(root_path), "%s%s", start_folder_path, end_path);
     if (strcmp(path, root_path) == 0)
     {
+        Draw_path();
         return;
     }
     int len = strlen(path);
@@ -166,29 +201,6 @@ void SEDHOM_Terminal::Remove_folder_from_path()
         strcpy(path, start_folder_path);
     }
     strcat(path, end_path);
-    Draw_path();
-}
-//////////////////////////////////////////////////////
-void SEDHOM_Terminal::Draw_Terminal()
-{
-    Start_New_Terminal();
-    User_Command("test");
-    Answer_Command("This is a test answer");
-    Draw_path();
-    User_Command("ls");
-    Answer_Command("choose folders<> and files[] => \nDocuments/ \nDownloads/ \nfile.txt \nimage.png \naudio.mp3 \nvideo.mp4");
-    Draw_path();
-    User_Command("open mustafa.txt");
-    Answer_Command("wrong msg file is not exit",true);
-    Draw_path();
-    User_Command("open SEDHOM");
-    Answer_Command("wrong msg Folder is not exit",true);
-    Draw_path();
-    User_Command("cd Documents");
-    Change_all_path("Root::Home::Documents -> ");
-    Draw_path();
-    User_Command("mkdir Folder1");
-    Answer_Command("Ok");
     Draw_path();
 }
 //JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
