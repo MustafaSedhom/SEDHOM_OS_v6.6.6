@@ -32,7 +32,7 @@
 #include "SEDHOM_GUI_Core/SEDHOM_Colors/SEDHOM_Colors.h"
 #include "SEDHOM_OS_Core/SEDHOM_OS_Time.h"
 #include "SEDHOM_Draw_GUI/SEDHOM_Draw_Text/SEDHOM_Text_Style/SEDHOM_Font_Style/SEDHOM_Font_definations.h"
-#include "SEDHOM_Terminal/SEDHOM_Draw_Termianl/SEDHOM_Draw_Terminal.h"
+#include "SEDHOM_Terminal/SEDHOOM_Terminal_Process/SEDHOM_Termianl_Do.h"
 //////////
 #include "SEDHOM_GUI_Core/SEDHOM_Arabic_Fonts/SEDHOM_Arabic_Font_Small_classic.h"
 //////////

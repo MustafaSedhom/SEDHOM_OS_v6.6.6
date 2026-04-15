@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/elmoh/OneDrive/Documentos/Arduino/libraries/SEDHOM_Display_OS/src/SEDHOM_Terminal/SEDHOM_Draw_Termianl",
-      "program": "c:/Users/elmoh/OneDrive/Documentos/Arduino/libraries/SEDHOM_Display_OS/src/SEDHOM_Terminal/SEDHOM_Draw_Termianl/build/Debug/outDebug",
+      "cwd": "c:/Users/elmoh/OneDrive/Documentos/Arduino/libraries/SEDHOM_Display_OS/src/SEDHOM_Draw_Terminal/SEDHOM_Draw_Termianl",
+      "program": "c:/Users/elmoh/OneDrive/Documentos/Arduino/libraries/SEDHOM_Display_OS/src/SEDHOM_Draw_Terminal/SEDHOM_Draw_Termianl/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
