@@ -8,7 +8,7 @@
 class SEDHOM_Terminal : public SEDHOM_Draw_Terminal
 {
     private:
-
+        bool Draw_Terminal_on_Screen = true;
     public:
         // define all functions
         void Init_Terminal_commands();

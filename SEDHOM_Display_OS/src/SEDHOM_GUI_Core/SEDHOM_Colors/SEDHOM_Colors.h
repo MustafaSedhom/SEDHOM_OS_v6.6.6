@@ -20,6 +20,7 @@ typedef U_int16_t Color_t ;
 #define Color_Green               0x07E0      /*   0, 255,   0 */
 #define Color_Cyan                0x07FF      /*   0, 255, 255 */
 #define Color_Red                 0xF800      /* 255,   0,   0 */
+#define Color_Yellow              0xFFE0      /* 255, 255,   0 */
 #define Color_Magenta             0xF81F      /* 255,   0, 255 */
 #define Color_Orange              0xFDA0      /* 255, 180,   0 */
 #define Color_GreenYellow         0xB7E0      /* 180, 255,   0 */
